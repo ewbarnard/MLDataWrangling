@@ -10,6 +10,7 @@ namespace App\Shell;
 
 use App\Garmin\ExportClassify;
 use App\Garmin\ExportPart02Step01;
+use App\Garmin\ExportPreparedPublic;
 use App\Garmin\ImportAnswer;
 use App\Garmin\ImportGarmin;
 use App\Garmin\ImportPartOne;
@@ -32,7 +33,7 @@ class GarminShell extends Shell {
     public function main(...$args) {
         $this->verbose('Beginning import run', 2);
 
-/*        SetSplit::run($this);
+        SetSplit::run($this);
         ImportGarmin::run($this);
         WaypointDistance::run($this);
         NearestWaypoint::run($this);
@@ -42,7 +43,8 @@ class GarminShell extends Shell {
         ImportPartOne::run($this);
         ExportClassify::run($this);
         ImportAnswer::run($this);
-        ExportPart02Step01::run($this);*/
+        ExportPart02Step01::run($this);
         ImportPredict::run($this);
+        ExportPreparedPublic::run($this);
     }
 }

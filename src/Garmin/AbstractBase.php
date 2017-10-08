@@ -17,6 +17,8 @@ use Cake\Database\StatementInterface;
 abstract class AbstractBase {
     protected static $importDir = '/Users/ewb/Desktop/Garmin 64st/Exports';
 
+    private static $meters = 3.28084; // Elevation (meters) to feet
+
     /** @var Connection */
     protected $connection;
 
@@ -158,14 +160,17 @@ abstract class AbstractBase {
         return $row;
     }
 
+    protected function toFeet($meters) {
+        return static::$meters * $meters;
+    }
+
     protected function calculateSpeed(array $from, array $to) {
         $this->calculateDistance($from, $to);
         $epochFrom = strtotime($from['time']);
         $epochTo = strtotime($to['time']);
         $this->seconds = $epochTo - $epochFrom;
         $this->mph = $this->miles / $this->seconds * 3600;
-        // Convert elevation change (meters) to feet
-        $this->climb = ($to['ele'] - $from['ele']) * 3.28084;
+        $this->climb = $to['ele'] - $from['ele'];
     }
 
     /**

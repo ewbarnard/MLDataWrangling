@@ -41,8 +41,6 @@ class ImportGarmin extends AbstractBase {
 
     private $section = [];
 
-    private $header = [];
-
     private $trksegMap = [];
 
     protected function main() {
@@ -150,8 +148,9 @@ class ImportGarmin extends AbstractBase {
         $id = $this->lookupWptUnique($row);
         if (!$id) {
             $time = date('Y-m-d H:i:s', strtotime($row['time']));
+            $elevation = $this->toFeet($row['ele']);
             $parms = [
-                $row['ID'], $row['lat'], $row['lon'], $row['ele'], $time,
+                $row['ID'], $row['lat'], $row['lon'], $elevation, $time,
                 $row['name'], $row['cmt'], $row['desc'],
             ];
             $this->wptInsert->execute($parms);
@@ -213,8 +212,9 @@ class ImportGarmin extends AbstractBase {
             $id = $row['ID'];
             $segCsv = $row['trksegID'];
             $trksegId = $this->trksegMap[$this->fileId][$segCsv];
+            $elevation = $this->toFeet($row['ele']);
             $parms = [
-                $trksegId, $id, $segCsv, $row['lat'], $row['lon'], $row['ele'], $time,
+                $trksegId, $id, $segCsv, $row['lat'], $row['lon'], $elevation, $time,
             ];
             $this->trkptInsert->execute($parms);
         }
