@@ -53,19 +53,3 @@ Thumbs.db
 nbproject/* # NetBeans
 .vscode # Visual Studio Code
 .sass-cache/ # Sass preprocessor
-.editorconfig
-.gitattributes
-.github/
-.htaccess
-.travis.yml
-bin/
-composer.json
-composer.lock
-config/
-index.php
-logs/
-phpunit.xml.dist
-plugins/
-src/
-tests/
-webroot/
