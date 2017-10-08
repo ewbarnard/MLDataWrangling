@@ -9,6 +9,7 @@
 namespace App\Shell;
 
 use App\Garmin\ExportClassify;
+use App\Garmin\ImportAnswer;
 use App\Garmin\ImportGarmin;
 use App\Garmin\ImportPartOne;
 use App\Garmin\NearestWaypoint;
@@ -34,9 +35,10 @@ class GarminShell extends Shell {
         WaypointDistance::run($this);
         NearestWaypoint::run($this);
         PowerOn::run($this);
-        PowerOnSequence::run($this);*/
+        PowerOnSequence::run($this);
         TrackSpeed::run($this);
         ImportPartOne::run($this);
-        ExportClassify::run($this);
+        ExportClassify::run($this);*/
+        ImportAnswer::run($this);
     }
 }
