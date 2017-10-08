@@ -9,6 +9,7 @@
 namespace App\Shell;
 
 use App\Garmin\ExportClassify;
+use App\Garmin\ExportHike;
 use App\Garmin\ExportPart02Step01;
 use App\Garmin\ExportPreparedPublic;
 use App\Garmin\ImportAnswer;
@@ -46,5 +47,6 @@ class GarminShell extends Shell {
         ExportPart02Step01::run($this);
         ImportPredict::run($this);
         ExportPreparedPublic::run($this);
+        ExportHike::run($this);
     }
 }
