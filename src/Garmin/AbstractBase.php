@@ -17,7 +17,7 @@ use Cake\Database\StatementInterface;
 abstract class AbstractBase {
     protected static $importDir = '/Users/ewb/Desktop/Garmin 64st/Exports';
 
-    private static $meters = 3.28084; // Elevation (meters) to feet
+    protected static $meters = 3.28084; // Elevation (meters) to feet
 
     /** @var Connection */
     protected $connection;
@@ -161,7 +161,7 @@ abstract class AbstractBase {
     }
 
     protected function toFeet($meters) {
-        return static::$meters * $meters;
+        return sprintf('%.2f', static::$meters * $meters);
     }
 
     protected function calculateSpeed(array $from, array $to) {

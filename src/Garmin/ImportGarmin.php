@@ -163,7 +163,7 @@ class ImportGarmin extends AbstractBase {
     }
 
     private function lookupWptUnique(array $row) {
-        $parms = [$row['lat'], $row['lon'], $row['ele']];
+        $parms = [$row['lat'], $row['lon'], $this->toFeet($row['ele'])];
         $this->wptUnique->execute($parms);
         $result = $this->wptUnique->fetch('assoc');
         return (is_array($result) && array_key_exists('id', $result)) ? $result['id'] : 0;
