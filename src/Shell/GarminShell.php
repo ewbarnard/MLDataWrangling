@@ -8,6 +8,7 @@
 
 namespace App\Shell;
 
+use App\Garmin\ExportClassify;
 use App\Garmin\ImportGarmin;
 use App\Garmin\ImportPartOne;
 use App\Garmin\NearestWaypoint;
@@ -36,5 +37,6 @@ class GarminShell extends Shell {
         PowerOnSequence::run($this);*/
         TrackSpeed::run($this);
         ImportPartOne::run($this);
+        ExportClassify::run($this);
     }
 }
