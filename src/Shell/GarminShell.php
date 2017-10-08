@@ -13,6 +13,7 @@ use App\Garmin\ExportPart02Step01;
 use App\Garmin\ImportAnswer;
 use App\Garmin\ImportGarmin;
 use App\Garmin\ImportPartOne;
+use App\Garmin\ImportPredict;
 use App\Garmin\NearestWaypoint;
 use App\Garmin\PowerOn;
 use App\Garmin\PowerOnSequence;
@@ -40,7 +41,8 @@ class GarminShell extends Shell {
         TrackSpeed::run($this);
         ImportPartOne::run($this);
         ExportClassify::run($this);
-        ImportAnswer::run($this);*/
-        ExportPart02Step01::run($this);
+        ImportAnswer::run($this);
+        ExportPart02Step01::run($this);*/
+        ImportPredict::run($this);
     }
 }
