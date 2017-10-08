@@ -8,6 +8,7 @@
 
 namespace App\Shell;
 
+use App\Garmin\ImportGarmin;
 use App\Garmin\SetSplit;
 use Cake\Console\Shell;
 
@@ -21,5 +22,6 @@ class GarminShell extends Shell {
     public function main(...$args) {
         $this->verbose('Beginning import run', 2);
         SetSplit::run($this);
+        ImportGarmin::run($this);
     }
 }
