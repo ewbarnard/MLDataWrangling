@@ -28,6 +28,12 @@ abstract class AbstractBase {
 
     protected $feet = 0;
 
+    protected $seconds = 0;
+
+    protected $mph = 0.0;
+
+    protected $climb = 0.0;
+
     /** @var Shell */
     private $shell;
 
@@ -148,6 +154,16 @@ abstract class AbstractBase {
         return $row;
     }
 
+    protected function calculateSpeed(array $from, array $to) {
+        $this->calculateDistance($from, $to);
+        $epochFrom = strtotime($from['time']);
+        $epochTo = strtotime($to['time']);
+        $this->seconds = $epochTo - $epochFrom;
+        $this->mph = $this->miles / $this->seconds * 3600;
+        // Convert elevation change (meters) to feet
+        $this->climb = ($to['ele'] - $from['ele']) * 3.28084;
+    }
+
     /**
      * http://www.geodatasource.com/developers/php
      *
@@ -168,5 +184,4 @@ abstract class AbstractBase {
         $this->miles = abs($dist * 60 * 1.1515);
         $this->feet = $this->miles * 5280;
     }
-
 }

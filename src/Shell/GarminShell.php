@@ -13,6 +13,7 @@ use App\Garmin\NearestWaypoint;
 use App\Garmin\PowerOn;
 use App\Garmin\PowerOnSequence;
 use App\Garmin\SetSplit;
+use App\Garmin\TrackSpeed;
 use App\Garmin\WaypointDistance;
 use Cake\Console\Shell;
 
@@ -32,5 +33,6 @@ class GarminShell extends Shell {
         NearestWaypoint::run($this);
         PowerOn::run($this);
         PowerOnSequence::run($this);
+        TrackSpeed::run($this);
     }
 }
