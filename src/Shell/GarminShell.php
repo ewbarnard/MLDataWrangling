@@ -11,6 +11,7 @@ namespace App\Shell;
 use App\Garmin\ImportGarmin;
 use App\Garmin\NearestWaypoint;
 use App\Garmin\PowerOn;
+use App\Garmin\PowerOnSequence;
 use App\Garmin\SetSplit;
 use App\Garmin\WaypointDistance;
 use Cake\Console\Shell;
@@ -30,5 +31,6 @@ class GarminShell extends Shell {
         WaypointDistance::run($this);
         NearestWaypoint::run($this);
         PowerOn::run($this);
+        PowerOnSequence::run($this);
     }
 }
