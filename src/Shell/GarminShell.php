@@ -9,6 +9,7 @@
 namespace App\Shell;
 
 use App\Garmin\ImportGarmin;
+use App\Garmin\ImportPartOne;
 use App\Garmin\NearestWaypoint;
 use App\Garmin\PowerOn;
 use App\Garmin\PowerOnSequence;
@@ -27,12 +28,13 @@ class GarminShell extends Shell {
     public function main(...$args) {
         $this->verbose('Beginning import run', 2);
 
-        SetSplit::run($this);
+/*        SetSplit::run($this);
         ImportGarmin::run($this);
         WaypointDistance::run($this);
         NearestWaypoint::run($this);
         PowerOn::run($this);
-        PowerOnSequence::run($this);
+        PowerOnSequence::run($this);*/
         TrackSpeed::run($this);
+        ImportPartOne::run($this);
     }
 }

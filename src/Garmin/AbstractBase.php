@@ -24,6 +24,8 @@ abstract class AbstractBase {
 
     protected $lines = [];
 
+    protected $header = [];
+
     protected $miles = 0.0;
 
     protected $feet = 0;
@@ -33,6 +35,8 @@ abstract class AbstractBase {
     protected $mph = 0.0;
 
     protected $climb = 0.0;
+
+    private $motionIds = [];
 
     /** @var Shell */
     private $shell;
@@ -184,4 +188,26 @@ abstract class AbstractBase {
         $this->miles = abs($dist * 60 * 1.1515);
         $this->feet = $this->miles * 5280;
     }
+
+    protected function lookupMotion($motion) {
+        if (array_key_exists($motion, $this->motionIds)) {
+            return $this->motionIds[$motion];
+        }
+        $id = $this->queryMotion($motion);
+        if ($id) {
+            $this->motionIds[$motion] = $id;
+            return $id;
+        }
+        $this->motionInsert->execute([$motion]);
+        $id = $this->queryMotion($motion);
+        $this->motionIds[$motion] = $id;
+        return $id;
+    }
+
+    protected function queryMotion($motion) {
+        $this->motionQuery->execute([$motion]);
+        $row = $this->motionQuery->fetch('assoc');
+        return (is_array($row) && array_key_exists('id', $row)) ? (int)$row['id'] : 0;
+    }
+
 }
