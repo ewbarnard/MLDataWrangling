@@ -24,6 +24,10 @@ abstract class AbstractBase {
 
     protected $lines = [];
 
+    protected $miles = 0.0;
+
+    protected $feet = 0;
+
     /** @var Shell */
     private $shell;
 
@@ -142,6 +146,27 @@ abstract class AbstractBase {
             $row['ele'] = sprintf('%.2f', $row['ele']);
         }
         return $row;
+    }
+
+    /**
+     * http://www.geodatasource.com/developers/php
+     *
+     * @param array $from
+     * @param array $to
+     * @return void
+     */
+    protected function calculateDistance(array $from, array $to) {
+        $lat1 = $from['lat'];
+        $lon1 = $from['lon'];
+        $lat2 = $to['lat'];
+        $lon2 = $to['lon'];
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +
+            cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $this->miles = abs($dist * 60 * 1.1515);
+        $this->feet = $this->miles * 5280;
     }
 
 }
