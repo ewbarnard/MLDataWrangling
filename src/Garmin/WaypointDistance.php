@@ -49,12 +49,6 @@ class WaypointDistance extends AbstractBase {
         $this->distanceCount = $this->connection->prepare($sql);
     }
 
-    private function countDistance($trkptId) {
-        $this->distanceCount->execute([$trkptId]);
-        $row = $this->distanceCount->fetch('assoc');
-        return (is_array($row) && array_key_exists('count', $row)) ? (int)$row['count'] : 0;
-    }
-
     private function loadWaypoints() {
         $this->wptQuery->execute([]);
         $rows = $this->wptQuery->fetchAll('assoc');
@@ -100,6 +94,12 @@ class WaypointDistance extends AbstractBase {
         }
     }
 
+    private function countDistance($trkptId) {
+        $this->distanceCount->execute([$trkptId]);
+        $row = $this->distanceCount->fetch('assoc');
+        return (is_array($row) && array_key_exists('count', $row)) ? (int)$row['count'] : 0;
+    }
+
     private function lookupDistance($wptId, $trkptId) {
         $this->distanceId = 0;
         $this->distanceQuery->execute([$wptId, $trkptId]);
@@ -108,5 +108,4 @@ class WaypointDistance extends AbstractBase {
             $this->distanceId = (int)$row['id'];
         }
     }
-
 }
