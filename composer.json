@@ -11,12 +11,19 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "~1.0",
         "josegonzalez/dotenv": "2.*",
+        "friendsofcake/crud": "^5.2",
+        "friendsofcake/search": "^4.1",
+        "friendsofcake/crud-view": "^0.9.5",
+        "vlucas/phpdotenv": "^2.4",
         "roave/security-advisories": "dev-master"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "~3.2",
         "cakephp/bake": "~1.1",
+        "behat/mink-extension": "^2.3",
+        "behat/mink-goutte-driver": "^1.2",
+        "phpunit/phpunit": "^6.5",
         "cakephp/cakephp-codesniffer": "^3.0"
     },
     "autoload": {
